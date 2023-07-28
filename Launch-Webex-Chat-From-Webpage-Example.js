@@ -39,7 +39,7 @@ const createRoom = async () => {
   room = data[3];
 }
 
-//Add members to the new chat room via their provided emails
+//Add member to the new chat room via their provided email
 const addMembers = async () => {
   const response = await fetch('https://webexapis.com/v1/memberships', {
     method: 'POST',
@@ -53,7 +53,7 @@ const addMembers = async () => {
   handleErrors(response);
 }
 
-//Post initial message to chat - will display at the top of the chat window for all participants to view. This is completely optional is no information needs to be provided to members of the chat upon initialization
+//Post initial message to chat - will display at the top of the chat window for all participants to view. This is completely optional, no information needs to be provided to members of the chat upon initialization
 const postMessage = async () => {
   const response = await fetch('https://webexapis.com/v1/messages', {
     method: 'POST',
@@ -63,12 +63,12 @@ const postMessage = async () => {
     },
     body: JSON.stringify({roomId: room, text: 'Here is some sample text that will be posted into the chat. ' +
 	'This section will be displayed if HTML markdown cannot be displayed due to a user\'s settings. ' +
-    ' | You can also add variables from JavaScript or the HTML page - like this JS variable: ' + data + 
-    ' | or this item pulled from the webpage: ' + document.getElementById("someElement").innerHTML,
+    	' | You can also add variables from JavaScript or the HTML page - like this JS variable: ' + data + 
+    	' | or this item pulled from the webpage: ' + document.getElementById("someElement").innerHTML,
     markdown: '<b>This text will be posted into the chat if the user\'s settings allow HTML markdown.</b>' +
-    '<br>This allows you to easily format the text as desired.' +
-    '<br><i>You can also still add variables - like this JS variable: ' + data + '</i>' +
-    '<br>Or this item pulled from the webpage: ' + document.getElementById("someElement").innerHTML})
+    	'<br>This allows you to easily format the text as desired.' +
+    	'<br><i>You can also still add variables - like this JS variable: ' + data + '</i>' +
+    	'<br>Or this item pulled from the webpage: ' + document.getElementById("someElement").innerHTML})
   });
   
   handleErrors(response);
