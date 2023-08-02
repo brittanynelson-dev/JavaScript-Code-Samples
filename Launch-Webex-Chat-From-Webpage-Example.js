@@ -3,9 +3,9 @@ var email = null;
 var token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
 var data = 'XYZ';
 
-//Create array & get list of participants from webpage
+//Create array & get list of participants from webpage, in this case they are list elements separated by semicolons, but this could be virtually anything
 rawListArr = [];
-if (document.getElementById("emailList").textContent.includes("X")) {
+if (document.getElementById("emailList").textContent.includes(";")) {
     rawListArr = document.getElementById("emailList").innerHTML.split("<li>");
 }
 
@@ -33,7 +33,7 @@ const createRoom = async () => {
   });
   
   handleErrors(response);
-  const content = await response.json(); //extract JSON from the http response 
+  const content = await response.json(); //extract JSON from HTTP response 
   jsData = JSON.stringify(content);
   data = jsData.split("\"");
   room = data[3];
